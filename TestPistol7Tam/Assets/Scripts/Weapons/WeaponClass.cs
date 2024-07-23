@@ -13,32 +13,40 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
 
     public int bulletSpeed;
 
-    public virtual void Shoot()
+    public int weaponMaxDistance;
+
+    private Vector3 playerPosition;
+    Vector2 range = new Vector2(-1, 1);
+    public virtual void Awake()
     {
-        InteractableObject interactableObject = FindClosestInteractableObject();
-        GameObject newProjectile = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position + interactableObject.GetComponent<BoxCollider2D>().bounds.size / 2 - gameObject.transform.position) * bulletSpeed;
-
-        // interactableObject.transform.rotation
-
-        // GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler();
+        playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void GunShot()
     {
-        if (Input.GetMouseButton(1) && isActiveWeapon)
+        var fwd = gameObject.transform.forward;
+        var up = gameObject.transform.up;
+
+        System.Random random = new System.Random();
+
+        var rot = Quaternion.AngleAxis(random.Next(45, 135), up);
+        var rotatedVec = rot * fwd;
+        var finalVec = rotatedVec * 12;
+        transform.position = gameObject.transform.position + finalVec;
+    }
+    public virtual void Shoot()
+    {
+
+        InteractableObject interactableObject = FindClosestInteractableObject();
+        if (Vector3.Distance(interactableObject.transform.position, gameObject.transform.position) <= weaponMaxDistance)
         {
-            Shoot();
+            InstanciateBullet(interactableObject);
         }
     }
 
-    public void ShootToClosetEnemy()
-    {
+    public virtual void InstanciateBullet(InteractableObject interactableObject) { }
 
-    }
-
-    InteractableObject FindClosestInteractableObject() //looks for closest interactableObject
+    public InteractableObject FindClosestInteractableObject() //looks for closest interactableObject
     {
         float distanceToClosestinteractableObject = Mathf.Infinity;
         InteractableObject closestinteractableObject = null;
