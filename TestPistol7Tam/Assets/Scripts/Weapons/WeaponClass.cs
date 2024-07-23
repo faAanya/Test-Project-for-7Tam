@@ -16,9 +16,11 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
     public int weaponMaxDistance;
 
     private Vector3 playerPosition;
+    private GameObject player;
     Vector2 range = new Vector2(-1, 1);
     public virtual void Awake()
     {
+        player = GameObject.Find("Player");
         playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
 
@@ -38,6 +40,7 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
     {
 
         InteractableObject interactableObject = FindClosestInteractableObject();
+
         if (Vector3.Distance(interactableObject.transform.position, gameObject.transform.position) <= weaponMaxDistance)
         {
             InstanciateBullet(interactableObject);
