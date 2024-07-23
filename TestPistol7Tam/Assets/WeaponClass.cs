@@ -15,11 +15,13 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
 
     public virtual void Shoot()
     {
-        // GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-        // newBullet.gameObject.GetComponent<Rigidbody2D>().AddForce(FindClosestInteractableObject().gameObject.transform.position, ForceMode2D.Impulse);
         InteractableObject interactableObject = FindClosestInteractableObject();
         GameObject newProjectile = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
         newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position + interactableObject.GetComponent<BoxCollider2D>().bounds.size / 2 - gameObject.transform.position) * bulletSpeed;
+
+        // interactableObject.transform.rotation
+
+        // GameObject.FindGameObjectWithTag("Player").transform.rotation = Quaternion.Euler();
     }
 
     // Update is called once per frame
