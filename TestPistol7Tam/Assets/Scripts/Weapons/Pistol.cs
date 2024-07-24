@@ -18,6 +18,6 @@ public class Pistol : WeaponClass
     public override void InstanciateBullet(InteractableObject interactableObject)
     {
         GameObject newProjectile = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position + interactableObject.GetComponent<BoxCollider2D>().bounds.size / 2 - gameObject.transform.position) * bulletSpeed;
+        newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position - gameObject.transform.position) * bulletSpeed;
     }
 }

@@ -21,7 +21,7 @@ public class BulletController : MonoBehaviour
     {
         if (!gameObject.GetComponent<SpriteRenderer>().isVisible)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

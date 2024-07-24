@@ -23,18 +23,6 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
         playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
 
-    void GunShot()
-    {
-        var fwd = gameObject.transform.forward;
-        var up = gameObject.transform.up;
-
-        System.Random random = new System.Random();
-
-        var rot = Quaternion.AngleAxis(random.Next(45, 135), up);
-        var rotatedVec = rot * fwd;
-        var finalVec = rotatedVec * 12;
-        transform.position = gameObject.transform.position + finalVec;
-    }
     public virtual void Shoot()
     {
 
