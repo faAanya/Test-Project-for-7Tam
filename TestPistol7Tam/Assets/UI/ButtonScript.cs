@@ -14,6 +14,6 @@ public class ButtonScript : MonoBehaviour
     }
     void Update()
     {
-        button.interactable = !weaponHolder.isActiveWeapon;
+        button.interactable = !weaponHolder.weaponInfo.isActiveWeapon;
     }
 }

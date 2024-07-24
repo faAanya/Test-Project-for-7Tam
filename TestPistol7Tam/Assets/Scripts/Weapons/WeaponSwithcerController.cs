@@ -17,14 +17,14 @@ public class WeaponSwithcerController : MonoBehaviour
     public void ChangeWeapon(WeaponClass newWeapon)
     {
         previousWeapon = FindActiveWeapon();
-        previousWeapon.isActiveWeapon = false;
-        newWeapon.isActiveWeapon = true;
+        previousWeapon.weaponInfo.isActiveWeapon = false;
+        newWeapon.weaponInfo.isActiveWeapon = true;
         currentWeapon = newWeapon;
     }
 
     public WeaponClass FindActiveWeapon()
     {
-        var activeWeapon = System.Array.Find(weaponClasses, weapon => weapon.isActiveWeapon);
+        var activeWeapon = System.Array.Find(weaponClasses, weapon => weapon.weaponInfo.isActiveWeapon);
         return activeWeapon;
     }
 

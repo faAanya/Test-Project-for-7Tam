@@ -17,10 +17,10 @@ public class ShotGun : WeaponClass
     public override void InstanciateBullet(InteractableObject interactableObject)
     {
         System.Random random = new System.Random();
-        for (int i = 0; i < amountOfBullets; i++)
+        for (int i = 0; i < weaponInfo.amountOfBullets; i++)
         {
-            GameObject newProjectile = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
-            newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position + new Vector3(random.Next(-1, 2), random.Next(-1, 2), 0) - gameObject.transform.position) * bulletSpeed;
+            GameObject newProjectile = Instantiate(weaponInfo.bullet, gameObject.transform.position, Quaternion.identity);
+            newProjectile.GetComponent<Rigidbody2D>().velocity = (interactableObject.transform.position + new Vector3(random.Next(-1, 2), random.Next(-1, 2), 0) - gameObject.transform.position) * weaponInfo.bulletSpeed;
         }
 
     }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ButtonsEventsController : MonoBehaviour
 {
     public Button shootButton;
-    public WeaponSwithcerController weaponSwithcerController;
+    private WeaponSwithcerController weaponSwithcerController;
 
     public Button[] weaponButton;
 
     void Awake()
     {
-        weaponSwithcerController.GetComponent<WeaponSwithcerController>();
+        weaponSwithcerController = GameObject.FindGameObjectWithTag("WeaponSwitcherController").GetComponent<WeaponSwithcerController>();
         foreach (Button weaponChangeButton in weaponButton)
         {
             weaponChangeButton.onClick.AddListener(() => { weaponSwithcerController.ChangeWeapon(weaponChangeButton.GetComponent<ButtonScript>().weaponHolder); });

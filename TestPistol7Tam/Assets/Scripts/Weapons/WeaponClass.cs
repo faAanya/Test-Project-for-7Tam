@@ -5,22 +5,11 @@ using UnityEngine;
 public class WeaponClass : MonoBehaviour, WeaponInterface
 {
 
-    public bool isActiveWeapon = true;
-    public GameObject bullet;
-    public int amountOfBullets;
-
-
-    public int bulletSpeed;
-
-    public int weaponMaxDistance;
-
-    private Vector3 playerPosition;
-    private GameObject player;
-    Vector2 range = new Vector2(-1, 1);
+    public WeaponSO weaponInfo;
     public virtual void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
+        weaponInfo.player = GameObject.FindGameObjectWithTag("Player");
+        weaponInfo.playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
 
     public virtual void Shoot()
@@ -28,7 +17,7 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
 
         InteractableObject interactableObject = FindClosestInteractableObject();
 
-        if (Vector3.Distance(interactableObject.transform.position, gameObject.transform.position) <= weaponMaxDistance)
+        if (Vector3.Distance(interactableObject.transform.position, gameObject.transform.position) <= weaponInfo.weaponMaxDistance)
         {
             InstanciateBullet(interactableObject);
         }
