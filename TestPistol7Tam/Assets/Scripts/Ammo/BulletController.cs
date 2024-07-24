@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D bulletRB;
+    public int damage;
     Camera mainCam;
     [SerializeField] float maxBehindDistance = 0.5f;
 
@@ -12,7 +13,7 @@ public class BulletController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<InteractableObject>() != null)
         {
-            other.gameObject.GetComponent<InteractableObject>().Interact();
+            other.gameObject.GetComponent<InteractableObject>().Interact(damage);
         }
         Destroy(gameObject);
     }

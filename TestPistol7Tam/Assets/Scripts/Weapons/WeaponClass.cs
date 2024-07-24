@@ -9,7 +9,6 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
     public GameObject bullet;
     public int amountOfBullets;
 
-    public int damage;
 
     public int bulletSpeed;
 
@@ -20,7 +19,7 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
     Vector2 range = new Vector2(-1, 1);
     public virtual void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
 

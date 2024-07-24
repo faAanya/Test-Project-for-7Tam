@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamagableObjects : MonoBehaviour
+public class DamagableObjects : InteractableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+
+    public override void Awake()
     {
-        
+        base.Awake();
+    }
+    public override void Interact(int damage)
+    {
+        base.Interact();
+        if (health <= 0)
+        {
+            Die();
+        }
+        health -= damage;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Die()
     {
-        
+        Destroy(gameObject);
     }
 }
