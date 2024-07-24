@@ -19,3 +19,6 @@ MonoBehaviour:
   weaponMaxDistance: 10
   playerPosition: {x: -5.28, y: 6.3, z: 0.025359005}
   player: {fileID: 0}
+  amountOfBulletsRC: pistolAmountOfBullets
+  bulletSpeedRC: pistolBulletsSpeed
+  weaponMaxDistanceRC: pistolShootDistance

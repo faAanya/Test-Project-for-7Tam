@@ -19,3 +19,7 @@ MonoBehaviour:
   weaponMaxDistance: 6
   playerPosition: {x: -5.28, y: 6.3, z: 0.025359005}
   player: {fileID: 0}
+  isActiveWeaponRC: shotGunIsActive
+  amountOfBulletsRC: shotGunAmountOfBullets
+  bulletSpeedRC: shotGunBulletsSpeed
+  weaponMaxDistanceRC: shotGunShootDistance

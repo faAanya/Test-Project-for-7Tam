@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.RemoteConfig;
 using UnityEngine;
-
-public class WeaponClass : MonoBehaviour, WeaponInterface
+public class WeaponClass : MonoBehaviour, WeaponInterface, ISetRemoteConfigVariables
 {
 
     public WeaponSO weaponInfo;
     public virtual void Awake()
     {
+        ConfigManager.FetchCompleted += SetRemoteConfigVariables;
+        RemoteConfigManager.Instance.Awake();
         weaponInfo.player = GameObject.FindGameObjectWithTag("Player");
         weaponInfo.playerPosition = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
     }
@@ -42,5 +44,15 @@ public class WeaponClass : MonoBehaviour, WeaponInterface
         }
         return closestinteractableObject;
 
+    }
+
+    public void SetRemoteConfigVariables(ConfigResponse response)
+    {
+        weaponInfo.amountOfBullets = ConfigManager.appConfig.GetInt(weaponInfo.amountOfBulletsRC);
+        weaponInfo.bulletSpeed = ConfigManager.appConfig.GetInt(weaponInfo.bulletSpeedRC);
+        weaponInfo.weaponMaxDistance = ConfigManager.appConfig.GetInt(weaponInfo.weaponMaxDistanceRC);
+
+
+        Debug.Log($"I set variables for {gameObject.name}");
     }
 }
